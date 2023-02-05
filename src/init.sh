@@ -68,7 +68,7 @@ if [ "$SIGN_BUILDS" = true ]; then
 fi
 
 if [ "$CRONTAB_TIME" = "now" ]; then
-  /root/build.sh
+  exec /root/build.sh
 else
   # Initialize the cronjob
   cronFile=/tmp/buildcron
@@ -79,5 +79,5 @@ else
   rm $cronFile
 
   # Run crond in foreground
-  cron -f 2>&1
+  exec cron -f 2>&1
 fi
